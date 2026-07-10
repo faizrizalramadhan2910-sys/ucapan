@@ -1,0 +1,142 @@
+ <index class="html"></index>
+ <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ada Ucapan Spesial Untukmu!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Kartu Ucapan */
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: muncul 1s forwards ease-in-out;
+        }
+
+        @keyframes muncul {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #ff6b6b;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .untuk {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            display: inline-block;
+            border-bottom: 2px dashed #ff6b6b;
+            padding-bottom: 5px;
+        }
+
+        p.pesan {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* Tombol Interaktif */
+        .btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #ee5253;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="card">
+        <div class="icon">✨💝✨</div>
+        <h1>Ada Pesan Untukmu,</h1>
+        <div class="untuk" id="nama-penerima">Felicya Aurelia Marsyalila</div>
+        
+        <p class="pesan">
+            "Semangat belajarnyaa yaa,btw boleh minta no wa nya gaa? hehehehe"
+            )
+        </p>
+
+        <button class="btn" onclick="tampilkanEfek()">Klik di Sini</button>
+    </div>
+
+    <script>
+        // JAVASCRIPT UNTUK MEMBACA NAMA DARI LINK (URL PARAMETER)
+        function ambilNamaDariLink() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nama = urlParams.get('nama'); 
+            
+            if (nama) {
+                // Jika di link ada parameter ?nama=, teks akan mengikuti isi link tersebut
+                document.getElementById('nama-penerima').innerText = decodeURIComponent(nama);
+            }
+        }
+
+        // Fungsi interaksi saat tombol diklik
+        function tampilkanEfek() {
+            alert("Terima kasih sudah membaca! Have a wonderful day, Felicya! ✨");
+        }
+
+        // Jalankan fungsi baca nama saat halaman web dibuka
+        window.onload = ambilNamaDariLink;
+    </script>
+
+</body>
+</html>
