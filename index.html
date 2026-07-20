@@ -1,20 +1,24 @@
- <index class="html"></index>
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ada Ucapan Spesial Untukmu!</title>
+    <title>Pesan Spesial untuk Fellycia ✨</title>
     <style>
+        /* Impor Font Lucu dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-color: #ffe6ee;
+            background-image: radial-gradient(#ffb6c1 2px, transparent 2px);
+            background-size: 24px 24px;
+            font-family: 'Quicksand', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,120 +26,129 @@
             padding: 20px;
         }
 
-        /* Kartu Ucapan */
         .card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
             text-align: center;
-            max-width: 450px;
+            max-width: 380px;
             width: 100%;
-            transform: scale(0.9);
-            opacity: 0;
-            animation: muncul 1s forwards ease-in-out;
+            border: 4px solid #ffb3c6;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
-        @keyframes muncul {
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+        .avatar {
+            font-size: 60px;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: bounce 2s infinite;
         }
 
-        .icon {
-            font-size: 50px;
+        h1 {
+            font-family: 'Fredoka', cursive;
+            color: #ff4d6d;
+            font-size: 22px;
             margin-bottom: 15px;
-            animation: float 3s ease-in-out infinite;
+            line-height: 1.3;
         }
 
-        @keyframes float {
+        .divider {
+            height: 3px;
+            width: 50px;
+            background-color: #ffb3c6;
+            margin: 0 auto 15px auto;
+            border-radius: 10px;
+        }
+
+        p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .box-ingat {
+            background-color: #fff0f3;
+            border: 2px dashed #ff758f;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .box-ingat ul {
+            list-style: none;
+        }
+
+        .box-ingat li {
+            margin: 8px 0;
+            font-weight: 700;
+            color: #c9184a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .btn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-family: 'Fredoka', cursive;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #c9184a;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Animasi */
+        @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
 
-        h1 {
-            color: #ff6b6b;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .untuk {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #4a4a4a;
-            margin-bottom: 20px;
-            display: inline-block;
-            border-bottom: 2px dashed #ff6b6b;
-            padding-bottom: 5px;
-        }
-
-        p.pesan {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-
-        /* Tombol Interaktif */
-        .btn {
-            background-color: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-        }
-
-        .btn:hover {
-            background-color: #ee5253;
-            transform: translateY(-2px);
-        }
-
-        .btn:active {
-            transform: translateY(0);
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="card">
-        <div class="icon">✨💝✨</div>
-        <h1>Ada Pesan Untukmu,</h1>
-        <div class="untuk" id="nama-penerima">Fellycia Aurelia Marsyalila</div>
+        <div class="avatar">💖</div>
+        <h1>Halo, Fellycia Aurelia Marsyalila! ✨</h1>
+        <div class="divider"></div>
         
-        <p class="pesan">
-            "Semangat belajarnyaa yaa,btw boleh minta no wa nya gaa? hehehehe"
-            )
-        </p>
+        <p>Semangat ya buat menjalanin hari ini! Jangan lupa tersenyum dan lakukan yang terbaik! 🌸</p>
 
-        <button class="btn" onclick="tampilkanEfek()">Klik di Sini</button>
+        <div class="box-ingat">
+            <ul>
+                <li>🍳 Jangan lupa sarapan dulu ya!</li>
+                <li>💊 Minum vitamin biar tetep fit!</li>
+                <li>💧 Minum air putih yang cukup!</li>
+            </ul>
+        </div>
+
+        <button class="btn" onclick="kirimCinta()">Klik Kalau Udah Sarapan! 🥞</button>
     </div>
 
     <script>
-        // JAVASCRIPT UNTUK MEMBACA NAMA DARI LINK (URL PARAMETER)
-        function ambilNamaDariLink() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const nama = urlParams.get('nama'); 
-            
-            if (nama) {
-                // Jika di link ada parameter ?nama=, teks akan mengikuti isi link tersebut
-                document.getElementById('nama-penerima').innerText = decodeURIComponent(nama);
-            }
+        function kirimCinta() {
+            alert("Good Girl! Have a Good Day. Semangat terus ya Fell ! 🥰✨");
         }
-
-        // Fungsi interaksi saat tombol diklik
-        function tampilkanEfek() {
-            alert("Terima kasih sudah membaca! Have a wonderful day, Felicya! ✨");
-        }
-
-        // Jalankan fungsi baca nama saat halaman web dibuka
-        window.onload = ambilNamaDariLink;
     </script>
 
 </body>
