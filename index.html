@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelacak Lokasi HP</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: white;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 25px;
+            background: #1e293b;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px #0004;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 25px;
+        }
+
+        p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            background: #0f172a;
+            color: white;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #38bdf8;
+            color: #082f49;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7dd3fc;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            background: #0f172a;
+            border-radius: 8px;
+            overflow-wrap: anywhere;
+        }
+
+        a {
+            color: #38bdf8;
+        }
+
+        .catatan {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📍 Pelacak Lokasi HP</h1>
+
+        <p>
+            Aplikasi ini mengambil koordinat GPS
+            perangkat yang membuka halaman ini,
+            setelah pengguna memberikan izin.
+        </p>
+
+        <label for="imei">Nomor IMEI (opsional)</label>
+
+        <input
+            type="text"
+            id="imei"
+            placeholder="Masukkan 15 digit IMEI"
+            maxlength="15"
+            inputmode="numeric"
+        >
+
+        <button onclick="lacakLokasi()">
+            Ambil Lokasi GPS
+        </button>
+
+        <div id="hasil">
+            Lokasi belum diambil.
+        </div>
+
+        <p class="catatan">
+            IMEI hanya digunakan sebagai data input.
+            Aplikasi ini tidak melacak lokasi melalui IMEI.
+        </p>
+    </div>
+
+    <script>
+        function lacakLokasi() {
+            const hasil = document.getElementById("hasil");
+            const imei = document.getElementById("imei").value.trim();
+
+            if (imei !== "" && !/^\d{15}$/.test(imei)) {
+                hasil.textContent =
+                    "Nomor IMEI harus terdiri dari 15 digit.";
+                return;
+            }
+
+            if (!("geolocation" in navigator)) {
+                hasil.textContent =
+                    "Browser tidak mendukung fitur GPS.";
+                return;
+            }
+
+            hasil.textContent =
+                "Meminta izin lokasi perangkat...";
+
+            navigator.geolocation.getCurrentPosition(
+                function(posisi) {
+                    const lat = posisi.coords.latitude;
+                    const lon = posisi.coords.longitude;
+                    const akurasi = posisi.coords.accuracy;
+
+                    const peta =
+                        "https://www.google.com/maps?q="
+                        + lat + "," + lon;
+
+                    hasil.innerHTML = `
+                        <h3>Lokasi berhasil diperoleh</h3>
+                        <p><b>Latitude:</b> ${lat}</p>
+                        <p><b>Longitude:</b> ${lon}</p>
+                        <p><b>Akurasi:</b> ±${Math.round(akurasi)} meter</p>
+                        <p><a href="${peta}"
+                           target="_blank"
+                           rel="noopener">
+                           Buka lokasi di Google Maps
+                        </a></p>
+                    `;
+                },
+
+                function(error) {
+                    const pesan = {
+                        1: "Izin lokasi ditolak.",
+                        2: "Lokasi perangkat tidak tersedia.",
+                        3: "Waktu permintaan lokasi habis."
+                    };
+
+                    hasil.textContent =
+                        pesan[error.code] ||
+                        "Terjadi kesalahan saat mengambil lokasi.";
+                },
+
+                {
+                    enableHighAccuracy: true,
+                    timeout: 15000,
+                    maximumAge: 0
+                }
+            );
+        }
+    </script>
+</body>
+</html>
